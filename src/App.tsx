@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { projects } from "./data";
 import {
   FaLinkedinIn,
@@ -10,14 +10,17 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { BiToggleLeft } from "react-icons/bi";
 
 const App = function () {
+  const [toggle, setToggle] = useState(false);
+
   useEffect(() => {
     AOS.init();
   }, []);
-
+  console.log(toggle);
   return (
-    <div className="px-10 md:px-0">
+    <div className="px-10 md:px-0 relative">
       <header className="flex justify-between items-center h-16 sticky top-0 z-10 bg-black bg-opacity-75">
         <div className="text-xl md:text-2xl font-medium">Lee Obby</div>
 
@@ -39,8 +42,62 @@ const App = function () {
           </li>
         </ul>
 
-        <FaBars className="text-xl md:hidden" />
+        <div
+          className="text-xl md:hidden p-2 hover:bg-gray-300"
+          onClick={() => setToggle((prev) => !prev)}
+        >
+          <FaBars />
+        </div>
       </header>
+
+      <div
+        className={
+          toggle
+            ? "transition-all duration-200 bg-gray-200 text-black fixed top-0 left-0 right-0 bottom-0 z-20 opacity-100"
+            : "transition-all duration-200 bg-gray-200 text-black fixed top-0 left-0 right-0 bottom-0 -z-10 opacity-0"
+        }
+      >
+        <div
+          className="p-3 hover:bg-gray-300 w-14 text-center"
+          onClick={() => setToggle((prev) => !prev)}
+        >
+          <FaTimes className="text-3xl" />
+        </div>
+
+        <div className="flex flex-col items-center gap-10 mt-14 px-2">
+          <a
+            className="p-3 hover:bg-gray-300 text-2xl"
+            href="#home"
+            onClick={() => setToggle((prev) => !prev)}
+          >
+            Home
+          </a>
+          <a
+            className="p-3 hover:bg-gray-300 text-2xl"
+            href="#about"
+            onClick={() => setToggle((prev) => !prev)}
+          >
+            About
+          </a>
+          <a
+            className="p-3 hover:bg-gray-300 text-2xl"
+            href="#works"
+            onClick={() => setToggle((prev) => !prev)}
+          >
+            Works
+          </a>
+          <a
+            className="p-3 hover:bg-gray-300 text-2xl"
+            href="#contact"
+            onClick={() => setToggle((prev) => !prev)}
+          >
+            Contact
+          </a>
+          <div className="p-3 hover:bg-gray-300 text-2xl">
+            <FaAdjust />
+          </div>
+        </div>
+      </div>
 
       <section
         id="home"
