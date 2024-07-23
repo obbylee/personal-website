@@ -12,9 +12,5 @@
 }
 
 :root {
-  color: white;
-  background-color: black;
   font-family: "Poppins", sans-serif;
-  max-width: 1080px;
-  margin: 0 auto;
 }
